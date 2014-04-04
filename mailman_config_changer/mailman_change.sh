@@ -1,21 +1,22 @@
 #!/bin/bash
 
-MAILINGLISTS="mailinglists.txt"
-CONFIG="config.conf"
+PTH=`pwd`
+MAILINGLISTS="${PTH}/mailinglists.txt"
+CONFIG="${PTH}/config.conf"
 BACKUP_PATH="/tmp/lists_configs/"
 ERROR=0
 
 if [ ! "$USER" = "mailman" ] ; then
-	echo "you are not mailman" >2
+	echo "you are not mailman" 1>&2
 	exit 1
 fi
 
 if [ ! -r "$CONFIG" ] ; then
-	echo "config file \"${CONFIG}\" not readable" >2
+	echo "config file \"${CONFIG}\" not readable" 1>&2
 	ERROR=1
 fi
 if [ ! -r "$MAILINGLISTS" ] ; then
-	echo "file \"${MAILINGLISTS}\" not readable" >2
+	echo "file \"${MAILINGLISTS}\" not readable" 1>&2
 	ERROR=1
 fi
 
